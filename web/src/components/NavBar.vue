@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">King of Bots</a>
+            <router-link class="navbar-brand" to="/">King of Bots</router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,13 +9,13 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/pk">对战</a>
+                        <router-link class="nav-link" aria-current="page" to="/pk">对战</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/record">对战列表</a>
+                        <router-link class="nav-link" to="/record">对战列表</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/rank">排行榜</a>
+                        <router-link class="nav-link" to="/rank">排行榜</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -25,10 +25,10 @@
                             luo
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/user/profile">个人主页</a></li>
-                            <li><a class="dropdown-item" href="/user/bot">我的bot</a></li>
+                            <li><router-link class="dropdown-item" to="/user/profile">个人主页</router-link></li>
+                            <li><router-link class="dropdown-item" to="/user/bot">我的bot</router-link></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout">退出</a></li>
+                            <li><a class="dropdown-item" href="/">退出</a></li>
                         </ul>
                     </li>
                 </ul>
