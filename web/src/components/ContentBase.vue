@@ -1,8 +1,10 @@
 <template>
-    <div class="card">
-        <div class="card-body">
-            <!-- 显示所有子元素 -->
-            <slot></slot>
+    <div class="container content-field">
+        <div class="card">
+            <div class="card-body">
+                <!-- 显示所有子元素 -->
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -16,8 +18,8 @@ export default {
 </script>
 
 <style scoped>
-    .card{
-        margin: 10px;
-    }
+.content-field {
+    margin-top: 20px;
+}
 
 </style>

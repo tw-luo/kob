@@ -9,13 +9,13 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <router-link class="nav-link" aria-current="page" to="/pk">对战</router-link>
+                        <router-link :class="route_name=='PK'?'nav-link active':'nav-link'" aria-current="page" to="/pk">对战</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/record">对战列表</router-link>
+                        <router-link :class="route_name=='Record'?'nav-link active':'nav-link'" to="/record">对战记录</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/rank">排行榜</router-link>
+                        <router-link :class="route_name=='Rank'? 'nav-link active':'nav-link'" to="/rank">排行榜</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -24,10 +24,12 @@
                             aria-expanded="false">
                             luo
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><router-link class="dropdown-item" to="/user/profile">个人主页</router-link></li>
                             <li><router-link class="dropdown-item" to="/user/bot">我的bot</router-link></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="/">退出</a></li>
                         </ul>
                     </li>
@@ -38,9 +40,27 @@
 </template>
 
 <script>
-    export default {
-        name: 'NavBar',
+import { useRoute } from 'vue-router';
+import { computed} from 'vue';
+
+
+export default {
+    name: 'NavBar',
+    setup: () => {
+        const route = useRoute();
+        let route_name = computed(() => {
+            return route.name;
+        });
+        
+        return {
+            route_name
+        }
     }
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+.dropdown-menu {
+    margin: 0 !important;
+}
+</style>
