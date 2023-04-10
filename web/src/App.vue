@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="content">
     <div>bot name:{{ botName }}</div>
     <div>bot level: {{ botLevel }}</div>
   </div>
@@ -37,6 +37,11 @@ export default{
 </script>
 
 <style>
-
+  body{
+    width: 100%;
+    height: 100%;
+    background-image: url('@/assets/background.png');
+    background-size: cover;
+  }
 </style>
 
