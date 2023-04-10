@@ -1,47 +1,33 @@
 <template>
-  <div id="content">
-    <div>bot name:{{ botName }}</div>
-    <div>bot level: {{ botLevel }}</div>
-  </div>
-  <router-view>
+  <NavBar></NavBar>
+  <div class="container">
+    <router-view>
 
-  </router-view>
+    </router-view>
+  </div>
 </template>
 
 <script>
-import $ from 'jquery';
-import {ref} from 'vue';
+import NavBar from '@/components/NavBar.vue';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
-let botName = ref('');
-let botLevel = ref('');
-
-export default{
+export default {
   name: 'App',
-  setup(){
-    $.ajax({
-      url: 'http://localhost:8088/pk/api/get_bot_info',
-      type: 'GET',
-      dataType: 'json',
-      success: function(data){
-        botName.value = data.name;
-        botLevel.value = data.level;
-      }
-    });
-    return {
-      botName,
-      botLevel
-    }
-  }
+  components: {
+    NavBar
+  },
+
 }
 
 </script>
 
 <style>
-  body{
-    width: 100%;
-    height: 100%;
-    background-image: url('@/assets/background.png');
-    background-size: cover;
-  }
+body {
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/background.png');
+  background-size: cover;
+}
 </style>
 
