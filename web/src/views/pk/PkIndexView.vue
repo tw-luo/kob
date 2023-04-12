@@ -1,8 +1,10 @@
 <template>
     <ContentBase>
-        <div>
+        <div style="margin-bottom: 20px;">
             PK Index
         </div>
+
+        <a href="/pk/play"><button class="btn btn-danger">开始游戏</button></a>
     </ContentBase>
 </template>
 

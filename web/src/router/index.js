@@ -6,6 +6,7 @@ import RecordIndexView from "@/views/record/RecordIndexView.vue";
 import UserProfileView from "@/views/user/profile/UserProfileView.vue";
 import UserBotView from "@/views/user/bot/UserBotView.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import PlayView from "@/views/pk/play/PlayView.vue";
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     path: "/pk",
     name: "PK",
     component: PkIndexView,
+  },
+  {
+    path:"/pk/play",
+    name:"PKPlay",
+    component: PlayView,
   },
   {
     path: "/record",
