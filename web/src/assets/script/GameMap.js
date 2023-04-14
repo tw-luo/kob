@@ -39,6 +39,9 @@ export class GameMap extends BaseObject {
         this
       ),
     ];
+
+    this.winner=null;
+    this.message=null;
   }
 
   start() {
@@ -101,8 +104,8 @@ export class GameMap extends BaseObject {
         let c = parseInt(Math.random() * this.cols);
         if (g[r][c] || g[c][r]) continue;
 
-        if(this.calcDistance(r,c,this.rows-2,1)<=2) continue;
-        if(this.calcDistance(r,c,1,this.cols-2)<=2) continue;
+        if (this.calcDistance(r, c, this.rows - 2, 1) <= 2) continue;
+        if (this.calcDistance(r, c, 1, this.cols - 2) <= 2) continue;
 
         if ((r == this.rows - 2 && c == 1) || (r == 1 && c == this.cols - 2))
           continue;
@@ -139,8 +142,57 @@ export class GameMap extends BaseObject {
     //console.log(this.L);
   }
 
+  checkSnakeCollision() {
+    const [snake1, snake2] = this.snakes;
+
+    for (const cell1 of snake1.cells) {
+      for (const cell2 of snake2.cells) {
+        if (cell1.x === cell2.x && cell1.y === cell2.y) {
+          if(cell1===snake1.cells[0]||cell2===snake2.cells[0]){
+            snake1.status = "die";
+            snake2.status = "die";
+          }
+          else if (snake1.status !== "die") {
+            snake1.status = "die";
+          }
+          else if (snake2.status !== "die") {
+            snake2.status = "die";
+          }
+          return;
+        }
+      }
+    }
+  }
+
+  //判断游戏是否结束
+  isGameOver() {
+    return this.snakes.some((snake) => snake.status === "die");
+  }
+
+  updateGameStatus() {
+    if (this.isGameOver()) {
+      if(this.snakes[0].status==="die"&&this.snakes[1].status==="die"){
+        this.winner="snake1&snake2";
+      }
+      else if(this.snakes[0].status==="die"){
+        this.winner="snake2";
+        this.snakes[1].status="idle";
+      }
+      else if(this.snakes[1].status==="die"){
+        this.winner="snake1";
+        this.snakes[0].status="idle";
+      }
+    }
+    if(this.message===null&&this.winner!==null){
+      this.message=`获胜者是: ${this.winner}`;
+      alert(this.message);
+    }
+  }
+
   update() {
     this.updateSize();
+    this.checkSnakeCollision();
+    this.updateGameStatus();
     this.render();
   }
 
