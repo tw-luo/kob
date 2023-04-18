@@ -3,6 +3,8 @@ package com.luo.service.controller.user;
 import com.luo.service.mapper.UserMapper;
 import com.luo.service.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
     @RequestMapping("all")
     public List<User> GetAllUser() {
         return userMapper.selectList(null);
@@ -33,6 +35,9 @@ public class UserController {
         if(userMapper.selectById(user_id)!=null){
             return "user already exist";
         }
+        PasswordEncoder passwordEncoder=new BCryptPasswordEncoder() ;
+
+        password=passwordEncoder.encode(password);
         User user = new User(user_id,username,password,1500);
         userMapper.insert(user);
         return "success";
