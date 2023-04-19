@@ -1,7 +1,7 @@
 <template>
     <ContentBase>
         <div>
-            User Profile
+            注册
         </div>
     </ContentBase>
 </template>
@@ -12,7 +12,7 @@ import ContentBase from '@/components/ContentBase.vue';
 
 
 export default {
-    name: 'UserProfileView',
+    name: 'RegisterView',
     components: {
         ContentBase
     },

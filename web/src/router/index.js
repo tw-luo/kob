@@ -3,10 +3,11 @@ import NotFoundView from "@/views/error/404/NotFoundView.vue";
 import PkIndexView from "@/views/pk/PkIndexView.vue";
 import RankIndexView from "@/views/rank/RankIndexView.vue";
 import RecordIndexView from "@/views/record/RecordIndexView.vue";
-import UserProfileView from "@/views/user/profile/UserProfileView.vue";
 import UserBotView from "@/views/user/bot/UserBotView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import PlayView from "@/views/pk/play/PlayView.vue";
+import LoginView from "@/views/user/account/LoginView.vue";
+import RegisterView from "@/views/user/account/RegisterView.vue";
 
 const routes = [
   {
@@ -40,14 +41,19 @@ const routes = [
     component: NotFoundView,
   },
   {
-    path: "/user/profile",
-    name: "UserProfile",
-    component: UserProfileView,
-  },
-  {
     path: "/user/bot",
     name: "UserBot",
     component: UserBotView,
+  },
+  {
+    path: "/user/account/login",
+    name: "Login",
+    component: LoginView,
+  },
+  {
+    path: "/user/account/register",
+    name: "Register",
+    component: RegisterView,
   },
   {
     path: "/:catchAll(.*)",
