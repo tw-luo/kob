@@ -9,15 +9,63 @@
 import NavBar from '@/components/NavBar.vue';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+// import $ from 'jquery'
 
 export default {
   name: 'App',
   components: {
     NavBar
   },
+  setup() {
+    // let token = null;
+    // $.ajax({
+    //   url: "http://127.0.0.1:8088/user/account/token/",
+    //   type: "post",
+    //   data: {
+    //     username: "luo",
+    //     password: "123456",
+    //   },
+    //   success(resp) {
+    //     console.log(resp);
+    //     token = resp.token;
+    //     console.log(token);
+    //     $.ajax({
+    //       url: "http://127.0.0.1:8088/user/account/info/",
+    //       type: "get",
+    //       headers: {
+    //         Authorization: "Bearer "+token,
+    //       },
+    //       success(resp) {
+    //         console.log(resp);
+    //       },
+    //       error(resp) {
+    //         console.log(resp);
+    //       },
+    //     });
+    //   },
+    //   error(resp) {
+    //     console.log(resp);
+    //   }
+    // });
 
+
+    // $.ajax({
+    //   url: "http://127.0.0.1:8088/user/account/register/",
+    //   type: "post",
+    //   data: {
+    //     username: "luo",
+    //     password: "123456",
+    //     confirmPassword: "123456",
+    //   },
+    //   success(resp) {
+    //     console.log(resp);
+    //   },
+    //   error(resp) {
+    //     console.log(resp);
+    //   }
+    // });
+  }
 }
-
 </script>
 
 <style>
