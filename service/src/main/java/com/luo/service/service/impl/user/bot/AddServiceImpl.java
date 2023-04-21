@@ -57,6 +57,8 @@ public class AddServiceImpl implements AddService {
         Bot bot=new Bot(null,user.getId(),bot_name,description,content,1500,currentTime,currentTime);
         botMapper.insert(bot);
 
+        map.put("message","success");
+
         return map;
     }
 }
