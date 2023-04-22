@@ -36,7 +36,7 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="navbar-nav" v-else>
+                <ul class="navbar-nav" v-else-if="!$store.state.user.pulling_info">
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'Login' }" role="button">
                             登录

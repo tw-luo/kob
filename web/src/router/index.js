@@ -8,52 +8,79 @@ import { createRouter, createWebHistory } from "vue-router";
 import PlayView from "@/views/pk/play/PlayView.vue";
 import LoginView from "@/views/user/account/LoginView.vue";
 import RegisterView from "@/views/user/account/RegisterView.vue";
-
+import store from "@/store";
 const routes = [
   {
     path: "/",
     name: "Home",
     component: HomeView,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path: "/pk",
     name: "PK",
     component: PkIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path:"/pk/play",
     name:"PKPlay",
     component: PlayView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path: "/record",
     name: "Record",
     component: RecordIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path: "/rank",
     name: "Rank",
     component: RankIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path: "/error/404",
     name: "404NotFound",
     component: NotFoundView,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path: "/user/bot",
     name: "UserBot",
     component: UserBotView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path: "/user/account/login",
     name: "Login",
     component: LoginView,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path: "/user/account/register",
     name: "Register",
     component: RegisterView,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path: "/:catchAll(.*)",
@@ -65,5 +92,14 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requestAuth && !store.state.user.is_login) {
+    next({name: "Login"});
+  } else {
+    next();
+  }
+})
+
 
 export default router;

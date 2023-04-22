@@ -1,5 +1,5 @@
 <template>
-    <ContentBase>
+    <ContentBase v-if="!$store.state.user.pulling_info">
 
         <div class="row justify-content-md-center">
             <div class="col-3">
@@ -39,6 +39,8 @@ export default {
         let username = ref('');
         let password = ref('');
         let error_message = ref('');
+
+
 
         const login = () => {
             error_message.value = "";
