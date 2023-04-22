@@ -19,13 +19,40 @@ export default {
     },
     setup(){
         const store=useStore();
+
+        //测试添加bot
+        // $.ajax({
+        //     url: "http://127.0.0.1:8088/user/bot/add/",
+        //         type: "post",
+        //         data: {
+        //             bot_name: "bot name",
+        //             description: "bot description",
+        //             content: "bot content",
+        //         },
+        //         headers:{
+        //             Authorization: "Bearer "+store.state.user.token,
+        //         },
+        //         success(resp) {
+        //             console.log(resp);
+        //             if (resp.message === "success") {
+        //                 alert("添加成功");
+        //             } else {
+        //                 alert("添加失败");
+        //             }
+        //         },
+        //         error(resp){
+        //             alert("添加失败");
+        //             console.log(resp);
+        //         }
+        // });
+
+
+        //测试删除bot
         $.ajax({
-            url: "http://127.0.0.1:8088/user/bot/add/",
+            url: "http://127.0.0.1:8088/user/bot/remove/",
                 type: "post",
                 data: {
-                    bot_name: "bot name",
-                    description: "bot description",
-                    content: "bot content",
+                    bot_id: 9,
                 },
                 headers:{
                     Authorization: "Bearer "+store.state.user.token,
@@ -33,16 +60,17 @@ export default {
                 success(resp) {
                     console.log(resp);
                     if (resp.message === "success") {
-                        alert("添加成功");
+                        alert("删除成功");
                     } else {
-                        alert("添加失败");
+                        alert("删除失败\n"+resp.message);
                     }
                 },
                 error(resp){
-                    alert("添加失败");
+                    alert("删除失败,请检查网络连接");
                     console.log(resp);
                 }
         });
+
     }
 }
 
