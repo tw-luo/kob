@@ -48,11 +48,38 @@ export default {
 
 
         //测试删除bot
+        // $.ajax({
+        //     url: "http://127.0.0.1:8088/user/bot/remove/",
+        //         type: "post",
+        //         data: {
+        //             bot_id: 9,
+        //         },
+        //         headers:{
+        //             Authorization: "Bearer "+store.state.user.token,
+        //         },
+        //         success(resp) {
+        //             console.log(resp);
+        //             if (resp.message === "success") {
+        //                 alert("删除成功");
+        //             } else {
+        //                 alert("删除失败\n"+resp.message);
+        //             }
+        //         },
+        //         error(resp){
+        //             alert("删除失败,请检查网络连接");
+        //             console.log(resp);
+        //         }
+        // });
+
+        //测试修改bot
         $.ajax({
-            url: "http://127.0.0.1:8088/user/bot/remove/",
+            url: "http://127.0.0.1:8088/user/bot/update/",
                 type: "post",
                 data: {
-                    bot_id: 9,
+                    bot_id: 3,
+                    bot_name: "new bot name",
+                    description: "new bot description",
+                    content: "new bot content",
                 },
                 headers:{
                     Authorization: "Bearer "+store.state.user.token,
@@ -60,16 +87,17 @@ export default {
                 success(resp) {
                     console.log(resp);
                     if (resp.message === "success") {
-                        alert("删除成功");
+                        alert("更新成功");
                     } else {
-                        alert("删除失败\n"+resp.message);
+                        alert("更新失败\n"+resp.message);
                     }
                 },
                 error(resp){
-                    alert("删除失败,请检查网络连接");
+                    alert("更新失败,请检查网络连接");
                     console.log(resp);
                 }
         });
+
 
     }
 }
