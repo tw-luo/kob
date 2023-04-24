@@ -4,10 +4,11 @@ import { Wall } from "./Wall";
 import { Snake } from "./Snake";
 
 export class GameMap extends BaseObject {
-  constructor(ctx, parent) {
+  constructor(ctx, parent,store) {
     super();
     this.ctx = ctx;
     this.parent = parent;
+    this.store=store;
 
     this.L = 0;
 
@@ -45,79 +46,12 @@ export class GameMap extends BaseObject {
   }
 
   start() {
-    for (let i = 0; ; ++i) {
-      if (this.createWalls()) break;
-    }
+    this.createWalls();
   }
 
-  //判断随机生成的地图是否连通
-  /**
-   * @param {Array2D} g 地图
-   * @param {int} sx 起点x
-   * @param {int} sy 起点y
-   * @param {int} tx 终点x
-   * @param {int} ty 终点y
-   * @returns {boolean} 是否连通
-   * @memberof GameMap
-   */
-  checkConnectivity(g, sx, sy, tx, ty) {
-    if (sx == tx && sy == ty) return true;
-    g[sx][sy] = true;
-
-    let dx = [-1, 0, 1, 0];
-    let dy = [0, 1, 0, -1];
-    for (let i = 0; i < 4; i++) {
-      let x = sx + dx[i],
-        y = sy + dy[i];
-      if (!g[x][y] && this.checkConnectivity(g, x, y, tx, ty)) return true;
-    }
-
-    return false;
-  }
-
-  calcDistance(sx, sy, tx, ty) {
-    return Math.abs(sx - tx) + Math.abs(sy - ty);
-  }
 
   createWalls() {
-    const g = [];
-    for (let r = 0; r < this.rows; r++) {
-      g[r] = [];
-      for (let c = 0; c < this.cols; c++) {
-        g[r][c] = false;
-      }
-    }
-
-    // 给上下左右最外层加上障碍物
-    for (let r = 0; r < this.rows; r++) {
-      g[r][0] = g[r][this.cols - 1] = true;
-    }
-
-    for (let c = 0; c < this.cols; c++) {
-      g[0][c] = g[this.rows - 1][c] = true;
-    }
-
-    // 创建随机障碍物
-    for (let i = 0; i < this.wallCount / 2; i++) {
-      for (let j = 0; j < 1000; j++) {
-        let r = parseInt(Math.random() * this.rows);
-        let c = parseInt(Math.random() * this.cols);
-        if (g[r][c] || g[c][r]) continue;
-
-        if (this.calcDistance(r, c, this.rows - 2, 1) <= 2) continue;
-        if (this.calcDistance(r, c, 1, this.cols - 2) <= 2) continue;
-
-        if ((r == this.rows - 2 && c == 1) || (r == 1 && c == this.cols - 2))
-          continue;
-
-        g[r][c] = g[c][r] = true;
-        break;
-      }
-    }
-
-    const copy_g = JSON.parse(JSON.stringify(g));
-    if (!this.checkConnectivity(copy_g, this.rows - 2, 1, 1, this.cols - 2))
-      return false;
+    const g = this.store.state.pk.gameMap;
 
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
@@ -127,7 +61,6 @@ export class GameMap extends BaseObject {
       }
     }
 
-    return true;
   }
 
   updateSize() {

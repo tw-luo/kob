@@ -27,7 +27,7 @@
                             {{ $store.state.user.username }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><router-link class="dropdown-item" to="/user/account">个人主页</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{name:'UserProfile'}">个人主页</router-link></li>
                             <li><router-link class="dropdown-item" to="/user/bot">我的bot</router-link></li>
                             <li>
                                 <hr class="dropdown-divider">

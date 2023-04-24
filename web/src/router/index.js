@@ -9,6 +9,8 @@ import PlayView from "@/views/pk/play/PlayView.vue";
 import LoginView from "@/views/user/account/LoginView.vue";
 import RegisterView from "@/views/user/account/RegisterView.vue";
 import store from "@/store";
+import UserProfileView from "@/views/user/account/UserProfileView.vue";
+
 const routes = [
   {
     path: "/",
@@ -62,6 +64,14 @@ const routes = [
     path: "/user/bot",
     name: "UserBot",
     component: UserBotView,
+    meta: {
+      requestAuth: true,
+    }
+  },
+  {
+    path: "/user/account/profile",
+    name: "UserProfile",
+    component: UserProfileView,
     meta: {
       requestAuth: true,
     }

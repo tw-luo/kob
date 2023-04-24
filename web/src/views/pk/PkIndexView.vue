@@ -4,7 +4,7 @@
             PK Index
         </div>
 
-        <a href="/pk/play"><button class="btn btn-danger">开始游戏</button></a>
+        <router-link to="/pk/play"><button class="btn btn-danger">开始游戏</button></router-link>
     </ContentBase>
 </template>
 
