@@ -6,7 +6,7 @@ export default {
         socket: null,
         opponent_photo: "",
         opponent_username: "",
-
+        gameMap:null,
     },
     getters: {
     },
@@ -20,6 +20,9 @@ export default {
         },
         updateStatus(state, status) {
             state.status = status;
+        },
+        updateGameMap(state, gameMap) {
+            state.gameMap = gameMap;
         },
 
     },

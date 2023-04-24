@@ -35,11 +35,16 @@ export default {
       };
       socket.onmessage = function (e) {
         const data=JSON.parse(e.data);
+
+        console.log(data);
+
         if(data.event==="match-success"){
           store.commit("updateOpponent", {
             username: data.opponent_username,
             photo: data.opponent_photo,
           });
+
+          store.commit("updateGameMap", data.map);
 
           setTimeout(() => {
             store.commit("updateStatus", "playing");
