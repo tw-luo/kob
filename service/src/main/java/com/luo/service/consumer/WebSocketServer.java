@@ -2,6 +2,7 @@ package com.luo.service.consumer;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.luo.service.consumer.utils.JwtAuthorization;
+import com.luo.service.consumer.utils.game.GameMap;
 import com.luo.service.mapper.UserMapper;
 import com.luo.service.pojo.User;
 import com.luo.service.utils.JWT.filter.JwtAuthenticationTokenFilter;
@@ -76,11 +77,16 @@ public class WebSocketServer {
             System.out.println("user1: "+user1);
             System.out.println("user2: "+user2);
 
+            //生成游戏地图
+            GameMap gameMap=new GameMap(13,13,20);
+
             //给用户1发送匹配成功消息
             JSONObject respA=new JSONObject();
             respA.put("event", "match-success");
             respA.put("opponent_username", user2.getUsername());
             respA.put("opponent_photo", user2.getPhoto());
+            //发送游戏地图
+            respA.put("map", gameMap.getMap());
 
             users.get(user1.getId()).sendMessage(respA.toJSONString());
 
@@ -89,6 +95,8 @@ public class WebSocketServer {
             respB.put("event","match-success");
             respB.put("opponent_username", user1.getUsername());
             respB.put("opponent_photo", user1.getPhoto());
+            //发送游戏地图
+            respB.put("map", gameMap.getMap());
 
             users.get(user2.getId()).sendMessage(respB.toJSONString());
         }
